@@ -8,7 +8,18 @@
   <title><%= title %></title>
 </head>
 <body>
-  <h1><%= title %></h1>
-  <a href="/skills">Skills List</a>
+  <h1>Todos</h1>
+  <% if(error) { %>
+    <h2><%= error %></h2>
+  <% } %>
+  <ul>
+    <% todos.forEach(function(todo) { %>
+      <li>
+        <%= todo.text %>
+          - 
+        <%= todo.started ? 'started' : 'not started' %>
+      </li>
+    <% }) %>
+  </ul>
 </body>
 </html>
