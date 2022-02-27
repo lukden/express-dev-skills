@@ -5,21 +5,29 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/stylesheets/style.css">
-  <title><%= title %></title>
+  <title>Express Skills</title>
 </head>
 <body>
-  <h1>Todos</h1>
+  <h1>Skills as of <%= time %></h1>
   <% if(error) { %>
     <h2><%= error %></h2>
   <% } %>
   <ul>
-    <% todos.forEach(function(todo) { %>
+    <% skills.forEach(skill => { %>
       <li>
-        <%= todo.text %>
-          - 
-        <%= todo.started ? 'started' : 'not started' %>
+        <form 
+          action="/skills/<%= skill._id %>?_method=DELETE"
+          class="delete-form"
+          method="POST"
+        >
+          <button type="submit">X</button>
+        </form>
+        <a href="/skills/<%= skill._id %>"><%= skill.text %></a>
+         -
+        <%= skill.started ? "started" : "not started" %>  
       </li>
     <% }) %>
   </ul>
+  <a href="/skills/new">Add Skill</a>
 </body>
 </html>
